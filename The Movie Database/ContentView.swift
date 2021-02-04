@@ -85,7 +85,6 @@ struct Home: View {
             Spacer()
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
-//        .foregroundColor(.white)
     }
 }
 
