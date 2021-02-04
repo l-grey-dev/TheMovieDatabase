@@ -11,6 +11,7 @@
 		5E7B771325CC5AAF00887988 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B771225CC5AAF00887988 /* ContentView.swift */; };
 		5E7B771525CC5AB400887988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7B771425CC5AB400887988 /* Assets.xcassets */; };
 		5E7B771825CC5AB400887988 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E7B771725CC5AB400887988 /* Preview Assets.xcassets */; };
+		5E7B772525CC825D00887988 /* LoginPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7B772425CC825D00887988 /* LoginPageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +21,7 @@
 		5E7B771425CC5AB400887988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5E7B771725CC5AB400887988 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		5E7B771925CC5AB400887988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5E7B772425CC825D00887988 /* LoginPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 			children = (
 				5E7B771025CC5AAF00887988 /* The_Movie_DatabaseApp.swift */,
 				5E7B771225CC5AAF00887988 /* ContentView.swift */,
+				5E7B772425CC825D00887988 /* LoginPageView.swift */,
 				5E7B771425CC5AB400887988 /* Assets.xcassets */,
 				5E7B771925CC5AB400887988 /* Info.plist */,
 				5E7B771625CC5AB400887988 /* Preview Content */,
@@ -140,6 +143,7 @@
 			files = (
 				5E7B771325CC5AAF00887988 /* ContentView.swift in Sources */,
 				5E7B771125CC5AAF00887988 /* The_Movie_DatabaseApp.swift in Sources */,
+				5E7B772525CC825D00887988 /* LoginPageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
