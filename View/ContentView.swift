@@ -15,9 +15,6 @@ struct ContentView: View {
     var body: some View {
      
         NavigationView {
-            LoginPageView ()
-                .preferredColorScheme(.dark)
-                .navigationBarHidden(true)
             
             if logged {
                 Text("User Logged In...")
