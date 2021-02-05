@@ -15,7 +15,7 @@ struct LoginPageView : View {
     @State var password = ""
     
     //when first time user logged in via email store this for future biometric login
-    @AppStorage("stored_User") var user = "s.lukaschuk@yahoo.com"
+    @AppStorage("stored_User") var user = "test@mail.com"
     @AppStorage("status") var logged: Bool = false
     
     
@@ -183,7 +183,7 @@ struct LoginPageView : View {
     
     
     func authenticateUser2() {
-        if (userName == "s.lukaschuk@yahoo.com") && (password == "123") {
+        if (userName == "test@mail.com") && (password == "123") {
             withAnimation(.easeOut) { logged = true }
         }
     }
