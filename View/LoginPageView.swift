@@ -5,16 +5,20 @@
 //  Created by Sergey Lukaschuk on 04.02.2021.
 //
 
+
 import SwiftUI
 import LocalAuthentication
 
-struct LoginPage : View {
+struct LoginPageView : View {
     
     @State var userName = ""
     @State var password = ""
+    @State var statusLogin: Bool = false
     
     //when first time user logged in via email store this for future biometric login
     @AppStorage("stored_User") var user = "s.lukaschuk@yahoo.com"
+    @AppStorage("status") var logged: Bool = false
+    
     
     var body: some View {
         
@@ -63,6 +67,7 @@ struct LoginPage : View {
                     .frame(width: 35)
                 
                 TextField("EMAIL", text: $userName)
+                    .autocapitalization(.none)
             }
             .padding()
             .background(Color.white.opacity(userName == "" ? 0.0 : 0.12))
@@ -78,6 +83,7 @@ struct LoginPage : View {
                     .foregroundColor(.white)
                     .frame(width: 35)
                 SecureField("PASSWORD", text: $password)
+                    .autocapitalization(.none)
             }
             .padding()
             .background(Color.white.opacity(password == "" ? 0.0 : 0.12))
@@ -88,8 +94,8 @@ struct LoginPage : View {
             // MARK: - Button: login
             
             HStack(spacing: 15) {
-                
-                Button(action: {}) {
+            
+                Button(action: authenticateUser2) {
                     Text("LOGIN")
                         .fontWeight(.heavy)
                         .foregroundColor(.black)
@@ -100,6 +106,8 @@ struct LoginPage : View {
                 }
                 .opacity(userName != "" && password != "" ? 1.0 : 0.5)
                 .disabled(userName != "" && password != "" ? false : true)
+                
+                
                 
                 // MARK: - Face ID
                 
@@ -155,6 +163,30 @@ struct LoginPage : View {
             return true
         }
         return false
+    }
+    
+    // Authenticate User...
+    
+    func authenticateUser() {
+        
+        let scanner = LAContext()
+        scanner.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,
+                               localizedReason: "To Unlock \(userName)") { (status, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+                return
+            }
+            
+            // setting logged status as true...
+            withAnimation(.easeOut) { logged = true }
+        }
+    }
+    
+    
+    func authenticateUser2() {
+        if (userName == "s.lukaschuk@yahoo.com") && (password == "123") {
+            withAnimation(.easeOut) { logged = true }
+        }
     }
     
 }
