@@ -1,5 +1,5 @@
 # The Movie Database
-- Login Page UI Integrated With Face And Touch ID
+- Login Page UI Integrated With Face ID And Touch ID
 - List movies using API TMDb
 
 ### Requirement
