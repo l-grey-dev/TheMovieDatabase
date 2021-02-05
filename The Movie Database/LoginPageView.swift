@@ -6,11 +6,15 @@
 //
 
 import SwiftUI
+import LocalAuthentication
 
 struct LoginPage : View {
     
     @State var userName = ""
     @State var password = ""
+    
+    //when first time user logged in via email store this for future biometric login
+    @AppStorage("stored_User") var user = "s.lukaschuk@yahoo.com"
     
     var body: some View {
         
@@ -26,7 +30,8 @@ struct LoginPage : View {
             Image("logo")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 250)
+                .padding(.horizontal, 35) // Dynamic Frame
+//                .frame(width: 180) // Not Dynamic Frame
                 .padding(.vertical)
             
             // MARK: - Title Logo
@@ -46,6 +51,7 @@ struct LoginPage : View {
                 Spacer()
             }
             .padding()
+            .padding(.leading, 15)
             
             // MARK: - Field Email
             
@@ -71,41 +77,85 @@ struct LoginPage : View {
                     .font(.title2)
                     .foregroundColor(.white)
                     .frame(width: 35)
-                
-                TextField("PASSWORD", text: $password)
+                SecureField("PASSWORD", text: $password)
             }
             .padding()
             .background(Color.white.opacity(password == "" ? 0.0 : 0.12))
             .cornerRadius(15)
             .padding(.horizontal)
+            .padding(.bottom)
+            
+            // MARK: - Button: login
+            
+            HStack(spacing: 15) {
+                
+                Button(action: {}) {
+                    Text("LOGIN")
+                        .fontWeight(.heavy)
+                        .foregroundColor(.black)
+                        .padding(.vertical)
+                        .frame(width: UIScreen.main.bounds.width - 150)
+                        .background(Color("green"))
+                        .clipShape(Capsule())
+                }
+                .opacity(userName != "" && password != "" ? 1.0 : 0.5)
+                .disabled(userName != "" && password != "" ? false : true)
+                
+                // MARK: - Face ID
+                
+                if getBioMetricStatus() {
+                    
+                    Button(action: {}) {
+                        Image(systemName: LAContext().biometryType == .faceID ? "faceid" : "touchid")
+                            .font(.title)
+                            .foregroundColor(.black)
+                            .padding()
+                            .background(Color("green"))
+                            .clipShape(Circle())
+                    }
+                }
+            }
             .padding(.top)
             
-            // MARK: - Login Button
+            // MARK: - Button: forgot password
             
             Button(action: {}) {
-                Text("LOGIN")
-                    .fontWeight(.heavy)
-                    .foregroundColor(.black)
-                    .padding(.vertical)
-                    .frame(width: UIScreen.main.bounds.width - 150)
-                    .background(Color("green"))
-                    .clipShape(Capsule())
-            }
-            .padding()
-            
-            // MARK: - Forget Button
-            
-            Button(action: {}) {
-                Text("Forget password")
+                Text("Forgot password?")
                     .foregroundColor(Color("green"))
             }
             .padding(.top, 5.0)
             
             Spacer()
             
+            // MARK: - Create account
             
+            HStack(spacing: 10) {
+                
+                Text("Don't have an account?")
+                    .foregroundColor(Color.white.opacity(0.6))
+                
+                Button(action: {}) {
+                    Text("Signup")
+                        .fontWeight(.heavy)
+                        .foregroundColor(Color("green"))
+                }
+            }
+            .padding(.vertical)
         }
         .background(Color("bg").ignoresSafeArea(.all, edges: .all))
+        .animation(.easeOut)
     }
+    
+    // Getting BioMetricType...
+    
+    func getBioMetricStatus() -> Bool {
+        
+        let scanner = LAContext()
+        if userName == user && scanner.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: .none) {
+            return true
+        }
+        return false
+    }
+    
 }
 
