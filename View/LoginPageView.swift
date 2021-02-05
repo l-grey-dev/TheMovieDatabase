@@ -13,7 +13,6 @@ struct LoginPageView : View {
     
     @State var userName = ""
     @State var password = ""
-    @State var statusLogin: Bool = false
     
     //when first time user logged in via email store this for future biometric login
     @AppStorage("stored_User") var user = "s.lukaschuk@yahoo.com"
