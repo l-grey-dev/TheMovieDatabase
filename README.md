@@ -10,3 +10,7 @@
 ### Getting Started
 - Copy and Clone the project
 - Build and run the project
+
+### Login
+- mail: test@mail.com
+- password: 123
